@@ -20,7 +20,7 @@ from wideresnet import WideResNet
 from tensorboard_logger import configure, log_value
 
 parser = argparse.ArgumentParser(description='PyTorch WideResNet Training')
-parser.add_argument('--dataset', default='cifar10', type=str,
+parser.add_argument('--dataset', default='cifar100', type=str,
                     help='dataset (cifar10 [default] or cifar100)')
 parser.add_argument('--epochs', default=200, type=int,
                     help='number of total epochs to run')
@@ -84,7 +84,7 @@ def main():
         normalize
         ])
 
-    kwargs = {'num_workers': 1, 'pin_memory': True}
+    kwargs = {'num_workers': 0, 'pin_memory': True}
     assert(args.dataset == 'cifar10' or args.dataset == 'cifar100')
     train_loader = torch.utils.data.DataLoader(
         datasets.__dict__[args.dataset.upper()]('../data', train=True, download=True,
